@@ -342,11 +342,11 @@ class Transliterator:
             return 0    
 
     @staticmethod
-    def get_module_name(self):
+    def get_module_name():
         return "Transliterator"
 
     @staticmethod
-    def get_info(self):
+    def get_info():
         return  "Transliterate the text between any Indian Language"   
 
     @staticmethod
