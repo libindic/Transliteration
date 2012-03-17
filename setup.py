@@ -13,11 +13,9 @@ setup (
     long_description="""This library helps in transliteration
 from English to Indian Language and from one Indian Language
 to another Indian Language.""",
-    packages=find_packages('src'),
-    package_dir={'':'src'},
-    package_data={'transliteration':['cmudict.0.7a_SPHINX_40']},    
-    include_package_data=True,
-    namespace_packages=['transliteration'],
+    include_package_data=True,    
+    packages=find_packages(exclude='tests'),
+    package_data={name: ['cmudict.*']},    
     install_requires=['setuptools'],
     zip_safe=False,
     )
