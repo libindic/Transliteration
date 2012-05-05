@@ -25,6 +25,10 @@ and function which returns a dictionary or vowel or vowel signs for a language
 
 Trying to make indic_en transliteration more generic
 '''
+__all__ = ['kannada_english_dict', 'kn_vowels', 'kn_vowel_signs', 'malayalam_english_dict',
+           'ml_vowels', 'ml_vowel_signs', 'language_dictionary', 'language_vowels', 'language_vowel_signs',
+           'language_virama', 'language_anuswara', 'get_dictionary_for', 'get_anuswara_for',
+           'get_vowels_for', 'get_virama_for', 'get_vowel_signs_for']
 
 kannada_english_dict = {u'ಅ':'a',u'ಆ':'aa',u'ಇ':'i',u'ಈ':'i',u'ಉ':'u',\
                         u'ಊ':'u',u'ಋ':'rri',u'ಎ':'e',u'ಏ':'e',u'ಐ':'ai',\

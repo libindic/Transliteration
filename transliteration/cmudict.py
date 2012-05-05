@@ -21,7 +21,8 @@
 # If you find any bugs or have any suggestions email: santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
-import string
+__all__ = ['CMUDict']
+
 import os
 from cmumapping import *
 

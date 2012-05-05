@@ -1,9 +1,8 @@
-#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__import__('pkg_resources').declare_namespace(__name__)
-from transliterate import *
-from cmudict import *
-from cmumapping import *
+
+from transliterate.core import Transliterate, getInstance
+from transliterate.cmudict import *
+from transliterate.cmumapping import *
 
 

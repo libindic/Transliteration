@@ -4,7 +4,7 @@ name='transliteration'
 
 setup (
     name=name,
-    version="0.1",
+    version="0.2",
     url="http://silpa.org.in/Transliterate",
     license="LGPL 3.0",
     description="Indian Language Transliteration Library",
@@ -15,7 +15,7 @@ from English to Indian Language and from one Indian Language
 to another Indian Language.""",
     include_package_data=True,    
     packages=find_packages(exclude='tests'),
-    package_data={name: ['cmudict.*']},    
+    setup_requires=['setuptools-git'],
     install_requires=['setuptools'],
     zip_safe=False,
     )

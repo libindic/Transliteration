@@ -22,8 +22,9 @@
 # email: santhosh.thottingal@gmail.com
 # URL: http://www.smc.org.in
 
+__all__ = ['Transliterator', 'getInstance']
+
 import string
-import os
 from cmudict import CMUDict
 from indic_en import *
 
@@ -349,6 +350,6 @@ class Transliterator:
     def get_info():
         return  "Transliterate the text between any Indian Language"   
 
-    @staticmethod
-    def get_instance():
-        return Transliterator()
+
+def getInstance():
+    return Transliterator()
