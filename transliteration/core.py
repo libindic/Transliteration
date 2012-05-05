@@ -23,7 +23,6 @@
 # URL: http://www.smc.org.in
 
 __all__ = ['Transliterator', 'getInstance']
-
 import string
 from cmudict import CMUDict
 from indic_en import *
@@ -283,7 +282,7 @@ class Transliterator:
                 tx_string += 'a'
             index+=1
         return tx_string     
-
+    
     def transliterate(self,text, target_lang_code):
         tx_str=""
         lines=text.split("\n")
@@ -322,11 +321,13 @@ class Transliterator:
                     tx_str += self.transliterate_indic_indic(word,\
                                                                  src_lang_code,\
                                                                target_lang_code)
-                    tx_str = tx_str   + " "
+                    if len(lines)>1:
+                        tx_str += " "        
 
                 else:
                     tx_str = tx_str   +  word
-            tx_str = tx_str   +  "\n"
+            if len(lines)>1:        
+                tx_str += "\n"
         # Language specific fixes
         if target_lang_code == "ml_IN":
             tx_str = self._malayalam_fixes(tx_str)      
@@ -341,15 +342,12 @@ class Transliterator:
             return (target_id - src_id)
         except:
             return 0    
-
-    @staticmethod
-    def get_module_name():
+    
+    def get_module_name(self):
         return "Transliterator"
-
-    @staticmethod
-    def get_info():
+    def get_info(self):
         return  "Transliterate the text between any Indian Language"   
 
-
 def getInstance():
-    return Transliterator()
+    return Transliterator()     
+        
