@@ -23,9 +23,11 @@
 # URL: http://www.smc.org.in
 
 __all__ = ['Transliterator', 'getInstance']
+
 import string
 from cmudict import CMUDict
 from indic_en import *
+from langdetect import _detect_lang
 
 class Transliterator:
     def __init__(self):
@@ -291,7 +293,7 @@ class Transliterator:
             for word in words:
                 if(word.strip()>""):
                     try:
-                        src_lang_code=detect_lang(word)[word]
+                        src_lang_code=_detect_lang(word)[word]
                     except:
                         tx_str = tx_str + " " + word 
                         continue #FIXME 
