@@ -13,17 +13,14 @@ class TransliterationTest(unittest.TestCase):
 
     def testKannadaToEnglish(self):
         result = self.t.transliterate(self.kn,"en_US")
-        print result
-        self.assertEqual(result,u"namaskaara idu kannaDa paThya TraansliTareshhan parikshhegaagi")
+        self.assertEqual(result.strip(),"namaskaara idu kannaDa paThya TraansliTareshhan parikshhegaagi")
 
     def testEnglishToKannada(self):
         result = self.t.transliterate(self.en,"kn_IN")
-        print result
-        self.assertEqual(result,u"ದಿಸ್ ಇಸ್ ಅ ಇಂಗ್ಗ್ಲಿಷ್ ಟೆಕ್ಸ್ಟ್ ಫೋರ್ transliteration")
+        self.assertEqual(result.strip(),u"ದಿಸ್ ಇಸ್ ಅ ಇಂಗ್ಗ್ಲಿಷ್ ಟೆಕ್ಸ್ಟ್ ಫೋರ್ transliteration")
         
     def testKannadaToTamil(self):
-        result = self.t.transliterate(self.kn,"ml_IN")
-        print result
+        result = self.t.transliterate(self.kn,"ta_IN")
         self.assertEqual(result,u"நமஸ்காரஇதுகந்நடபட்யட்ராந்ஸ்லிடரேஷந்பரீக்ஷெகாகி")
 
 if __name__ == "__main__":
