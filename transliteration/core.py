@@ -25,13 +25,16 @@
 __all__ = ['Transliterator', 'getInstance']
 
 import string
+import normalizer
 from cmudict import CMUDict
 from indic_en import *
 from langdetect import _detect_lang
 
+
 class Transliterator:
     def __init__(self):
         self.cmu = CMUDict()
+        self.normalizer = normalizer.getInstance()
 
     def transliterate_en_ml(self, word):   
         """
@@ -151,14 +154,14 @@ class Transliterator:
             pass    
         return text 
 
-    def transliterate_indic_indic(self, word, src_lang, target_lang) :
+    def transliterate_indic_indic(self, word, src_lang, target_lang):
         """
             Transliterate from an Indian languge word
             to another indian language word
         """
         index = 0
         tx_str = ""
-        word = normalizer.normalize(word)
+        word = self.normalizer.normalize(word)
         if src_lang == "ml_IN" and target_lang != "ml_IN" :
             word = word.replace(u"\u200C",u"") 
             word = word.replace(u"\u200D",u"")
