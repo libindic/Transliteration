@@ -25,6 +25,7 @@
 __all__ = ['Transliterator', 'getInstance']
 
 import string
+import normalizer
 from cmudict import CMUDict
 import indic_en
 from langdetect import _detect_lang
@@ -33,6 +34,7 @@ from langdetect import _detect_lang
 class Transliterator:
     def __init__(self):
         self.cmu = CMUDict()
+        self.normalizer = normalizer.getInstance()
 
     def transliterate_en_ml(self, word):
         """
@@ -156,11 +158,10 @@ class Transliterator:
         """
         index = 0
         tx_str = ""
-        word = normalizer.normalize(word)
+        word = self.normalizer.normalize(word)
         if src_lang == "ml_IN" and target_lang != "ml_IN":
             word = word.replace(u"\u200C", u"")
             word = word.replace(u"\u200D", u"")
-
             #replace all samvruthokaram by u vowels
             word = word.replace(u"ു്", u"")
 
