@@ -231,11 +231,11 @@ class Transliterator:
         """
 
         # Get all the language related stuffs
-        dictionary = get_dictionary_for(src_lang)
-        vowels = get_vowels_for(src_lang)
-        vowel_signs = get_vowel_signs_for(src_lang)
-        virama = get_virama_for(src_lang)
-        anuswara = get_anuswara_for(src_lang)
+        dictionary = indic_en.get_dictionary_for(src_lang)
+        vowels = indic_en.get_vowels_for(src_lang)
+        vowel_signs = indic_en.get_vowel_signs_for(src_lang)
+        virama = indic_en.get_virama_for(src_lang)
+        anuswara = indic_en.get_anuswara_for(src_lang)
 
         word_length = len(word)
         index = 0
