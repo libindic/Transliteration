@@ -28,8 +28,8 @@ from cmumapping import *
 
 class CMUDict():
     def __init__(self):
-        self.dictionaryfile = os.path.join(os.path.dirname(__file__), \
-                'cmudict.0.7a_SPHINX_40')
+        self.dictionaryfile = os.path.join(os.path.dirname(__file__),
+                                           'cmudict.0.7a_SPHINX_40')
         self.cmudictionary = None
 
     def load(self):
@@ -44,7 +44,7 @@ class CMUDict():
             self.cmudictionary[lhs] = rhs
 
     def find(self, word):
-        if self.cmudictionary == None:
+        if self.cmudictionary is None:
             self.load()
         return self.cmudictionary[word.upper()]
 
@@ -72,6 +72,14 @@ class CMUDict():
                 except KeyError:
                     pronunciation_str += symbol
                 pronunciation_str = self._fix_vowel_signs_kn(pronunciation_str)
+
+        if language == "hi_IN":
+            for symbol in cmu_pronunciation:
+                try:
+                    pronunciation_str += CMU_HINDI_MAP[symbol]
+                except KeyError:
+                    pronunciation_str += symbol
+                pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
         return (pronunciation_str).decode("utf-8") + punctuations
 
     def _fix_vowel_signs_ml(self, text):
@@ -119,4 +127,19 @@ class CMUDict():
         text = text.replace("್ಒ", "ೊ")
         text = text.replace("್ಓ", "ೋ")
         text = text.replace("್ಔ", "ೌ")
+        return text
+
+    def _fix_vowel_signs_hi(self, text):
+        text = text.replace("अ", "")
+        text = text.replace("आ", "ा")
+        text = text.replace("इ", "ि")
+        text = text.replace("ई", "ी")
+        text = text.replace("उ", "ु")
+        text = text.replace("ऊ", "ू")
+        text = text.replace("ऋ", "ृ")
+        text = text.replace("ए", "े")
+        text = text.replace("ऐ", "ै")
+        text = text.replace("ओ", "ो")
+        text = text.replace("औ", "ौ")
+        text = text.replace("ङ", "न्")
         return text

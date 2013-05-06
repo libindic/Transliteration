@@ -30,11 +30,11 @@ from cmudict import CMUDict
 import indic_en
 from langdetect import _detect_lang
 
-lang_bases = { \
-        'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981, \
-        'pa_IN': 0x0A01, 'gu_IN': 0x0A81, 'or_IN': 0x0B01, 'ta_IN': 0x0B81, \
-        'te_IN': 0x0C01, 'kn_IN': 0x0C81, 'ml_IN': 0x0D01 \
-        }
+lang_bases = {
+    'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981,
+    'pa_IN': 0x0A01, 'gu_IN': 0x0A81, 'or_IN': 0x0B01, 'ta_IN': 0x0B81,
+    'te_IN': 0x0C01, 'kn_IN': 0x0C81, 'ml_IN': 0x0D01
+}
 
 
 class Transliterator:
@@ -56,14 +56,24 @@ class Transliterator:
         """
         return self.cmu.pronunciation(word, "kn_IN")
 
+    def transliterate_en_hi(self, word):
+        """
+        Transliterate English to Hindi with the help of
+        CMU pronuciation dictionary
+        """
+        return self.cmu.pronunciation(word, "hi_IN")
+
     def transliterate_en_xx(self, word, target_lang):
         """
         Transliterate English to any Indian Language.
         """
-        if target_lang == "en_IN"  or target_lang == "en_US":
+        if target_lang == "en_IN" or target_lang == "en_US":
             return word
         if target_lang == "kn_IN":
             tx_str = self.transliterate_en_kn(word)
+            return tx_str
+        elif target_lang == "hi_IN":
+            tx_str = self.transliterate_en_hi(word)
             return tx_str
         else:
             tx_str = self.transliterate_en_ml(word)
@@ -73,10 +83,11 @@ class Transliterator:
         #chain it through indic indic transliteratioin
         #first remove malayalam specific zwj
         tx_str = tx_str.replace(u'‍', '')  # remove instances of zwnj
-        if tx_str[-1:] == u'്' and (target_lang == "hi_IN" \
-                or target_lang == "gu_IN" \
-                or target_lang == "bn_IN"):
-            tx_str = tx_str[:-(len(u'്'))]  # remove the last virama'
+        if tx_str[-1:] == u'്' and \
+           (target_lang == "hi_IN"
+            or target_lang == "gu_IN"
+            or target_lang == "bn_IN"): tx_str = tx_str[:-(len(u'്'))]
+        # remove the last virama'
         return self.transliterate_indic_indic(tx_str, "ml_IN", target_lang)
 
     def transliterate_xx_en(self, word, src_lang):
@@ -106,14 +117,14 @@ class Transliterator:
             index += 1
             offset = ord(chr) - lang_bases[src_language]
             #76 is the virama offset for all indian languages from its base
-            if offset >= 61  and offset <= 76:
+            if offset >= 61 and offset <= 76:
                 tx_str = tx_str[:-1]  # remove the last 'a'
             if offset > 0 and offset <= 128:
                 tx_str = tx_str + charmap["ISO15919"][offset]
             #delete the inherent 'a' at the end of the word from hindi
-            if tx_str[-1:] == 'a' and (src_language == "hi_IN"\
-                    or src_language == "gu_IN"\
-                    or src_language == "bn_IN"):
+            if tx_str[-1:] == 'a' and (src_language == "hi_IN"
+                                       or src_language == "gu_IN"
+                                       or src_language == "bn_IN"):
                 if word_length == index and word_length > 1:  # if last letter
                     tx_str = tx_str[:-1]  # remove the last 'a'
         return tx_str .decode("utf-8")
@@ -138,11 +149,14 @@ class Transliterator:
             if offset > 0 and offset <= 128:
                 tx_str = tx_str + charmap["IPA"][offset]
             #delete the inherent 'a' at the end of the word from hindi
-            if tx_str[-1:] == 'ə' and (src_language == "hi_IN"\
-                    or src_language == "gu_IN"\
-                    or src_language == "bn_IN"):
-                if word_length == index and word_length > 1:  # if last letter
-                    tx_str = tx_str[:-(len('ə'))]  # remove the last 'a'
+            if tx_str[-1:] == 'ə' and \
+               (src_language == "hi_IN"
+                or src_language == "gu_IN"
+                or src_language == "bn_IN") and \
+               (word_length == index
+                and word_length > 1): tx_str = tx_str[:-(len('ə'))]
+            # if last letter
+            # remove the last 'a'
         return tx_str.decode("utf-8")
 
     def _malayalam_fixes(self, text):
@@ -173,8 +187,8 @@ class Transliterator:
 
         for chr in word:
             index += 1
-            if chr in string.punctuation or (ord(chr) <= 2304 \
-                    and ord(chr) >= 3071):
+            if chr in string.punctuation or (ord(chr) <= 2304
+                                             and ord(chr) >= 3071):
                 tx_str = tx_str + chr
                 continue
             offset = ord(chr) + self.getOffset(src_lang, target_lang)
@@ -183,11 +197,11 @@ class Transliterator:
             #schwa deletion
             baseoffset = offset - lang_bases[target_lang]
             #76 : virama
-            if (index == len(word) and baseoffset == 76 \
-                    and (target_lang == "hi_IN" or
-                          target_lang == "gu_IN" or
-                          target_lang == "pa_IN" or
-                          target_lang == "bn_IN")):
+            if (index == len(word) and baseoffset == 76
+                    and (target_lang == "hi_IN"
+                         or target_lang == "gu_IN"
+                         or target_lang == "pa_IN"
+                         or target_lang == "bn_IN")):
                 #TODO Add more languages having schwa deletion characteristic
                 tx_str = tx_str[:-(len(chr))]  # remove the last 'a'
 
@@ -212,13 +226,11 @@ class Transliterator:
                 tx_str = tx_str.replace(u'\u0BC3', u"ிரு")
                 tx_str = tx_str.replace(u'ஂ', u'ம்')
         #If target is malayalam, we need to add the virama
-        if ((target_lang == "ml_IN") and \
-                (src_lang == "hi_IN" or
-                src_lang == "gu_IN" or
-                src_lang == "pa_IN" or
-                src_lang == "bn_IN")
-                and tx_str[-1].isalpha()
-                ):
+        if ((target_lang == "ml_IN") and
+            (src_lang == "hi_IN"
+             or src_lang == "gu_IN"
+             or src_lang == "pa_IN"
+             or src_lang == "bn_IN") and tx_str[-1].isalpha()):
             tx_str = tx_str + u"്"
         return tx_str
 
@@ -279,7 +291,7 @@ class Transliterator:
 
             #handle am sign
             if index + 1 < word_length and word[index + 1] == anuswara \
-                    and  not word[index] in vowel_signs:
+                    and not word[index] in vowel_signs:
                 tx_string += 'a'
             index += 1
         return tx_string
@@ -298,30 +310,39 @@ class Transliterator:
                         continue  # FIXME
 
                     if target_lang_code == "ISO15919":
-                        tx_str = tx_str + self.transliterate_iso15919(word, \
-                                src_lang_code) + " "
+                        tx_str = (tx_str
+                                  + self.transliterate_iso15919(word,
+                                                                src_lang_code)
+                                  + " ")
                         continue
 
                     if target_lang_code == "IPA":
-                        tx_str = tx_str + self.transliterate_ipa(word, \
-                                src_lang_code) + " "
+                        tx_str = (tx_str
+                                  + self.transliterate_ipa(word,
+                                                           src_lang_code)
+                                  + " ")
                         continue
 
                     if src_lang_code == "en_US":
-                        tx_str = tx_str + self.transliterate_en_xx(word, \
-                                target_lang_code) + " "
+                        tx_str = (tx_str
+                                  + self.transliterate_en_xx(word,
+                                                             target_lang_code)
+                                  + " ")
                         continue
 
                     if target_lang_code == "en_US" or \
                             target_lang_code == "en_IN":
-                        tx_str = tx_str + self.transliterate_xx_en(word, \
-                                src_lang_code) + " "
+                        tx_str = (tx_str
+                                  + self.transliterate_xx_en(word,
+                                                             src_lang_code)
+                                  + " ")
                         continue
 
-                    tx_str += self.transliterate_indic_indic(word, \
-                            src_lang_code, target_lang_code)
+                    tx_str += self.transliterate_indic_indic(word,
+                                                             src_lang_code,
+                                                             target_lang_code)
 
-                    if len(lines) > 1:
+                    if len(line) > 1:
                         tx_str += " "
 
                 else:
@@ -331,7 +352,7 @@ class Transliterator:
         # Language specific fixes
         if target_lang_code == "ml_IN":
             tx_str = self._malayalam_fixes(tx_str)
-        return  tx_str
+        return tx_str
 
     def getOffset(self, src, target):
         src_id = 0
@@ -347,7 +368,7 @@ class Transliterator:
         return "Transliterator"
 
     def get_info(self):
-        return  "Transliterate the text between any Indian Language"
+        return "Transliterate the text between any Indian Language"
 
 
 def getInstance():

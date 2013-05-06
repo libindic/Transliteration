@@ -25,59 +25,83 @@ and function which returns a dictionary or vowel or vowel signs for a language
 
 Trying to make indic_en transliteration more generic
 '''
-__all__ = ['kannada_english_dict', 'kn_vowels', 'kn_vowel_signs', \
-        'malayalam_english_dict', 'ml_vowels', 'ml_vowel_signs', \
-        'language_dictionary', 'language_vowels', 'language_vowel_signs', \
-        'language_virama', 'language_anuswara', 'get_dictionary_for', \
-        'get_anuswara_for', 'get_vowels_for', 'get_virama_for', \
-        'get_vowel_signs_for']
+__all__ = ['kannada_english_dict', 'kn_vowels', 'kn_vowel_signs',
+           'malayalam_english_dict', 'ml_vowels', 'ml_vowel_signs',
+           'hindi_english_dict', 'hi_vowels', 'hi_vowel_signs',
+           'language_dictionary', 'language_vowels', 'language_vowel_signs',
+           'language_virama', 'language_anuswara', 'get_dictionary_for',
+           'get_anuswara_for', 'get_vowels_for', 'get_virama_for',
+           'get_vowel_signs_for']
 
-kannada_english_dict = { \
-        u'ಅ': 'a', u'ಆ': 'aa', u'ಇ': 'i', u'ಈ': 'i', u'ಉ': 'u', \
-        u'ಊ': 'u', u'ಋ': 'rri', u'ಎ': 'e', u'ಏ': 'e', u'ಐ': 'ai',\
-        u'ಒ': 'o', u'ಓ': 'o', u'ಔ': 'au', u'ಂ': 'm', u'ಃ': 'h',\
-        u'ಕ': 'k', u'ಖ': 'kh', u'ಗ': 'g', u'ಘ': 'gh', u'ಙ': 'ng', \
-        u'ಚ': 'ch', u'ಛ': 'chh', u'ಜ': 'j', u'ಝ': 'jhh', u'ಞ': 'nj', \
-        u'ತ': 'th', u'ಥ': 'thh', u'ದ': 'd', u'ಧ': 'dh', u'ನ': 'n', \
-        u'ಟ': 'T', u'ಠ': 'Th', u'ಡ': 'D', u'ಢ': 'Dh', u'ಣ': 'N', \
-        u'ಪ': 'p', u'ಫ': 'ph', u'ಬ': 'b', u'ಭ': 'bh', u'ಮ': 'm', \
-        u'ಯ': 'y', u'ರ': 'r', u'ಲ': 'l', u'ವ': 'v', u'ಶ': 'sh', \
-        u'ಷ': 'shh', u'ಸ': 's', u'ಹ': 'h', u'ಳ': 'L', \
-        u'ಋ': 'rri', u'್': '', u'ಾ': 'aa', u'ಿ': 'i', u'ೀ': 'i', \
-        u'ು': 'u', u'ೂ': 'u', u'ೃ': 'rri', u'ೆ': 'e', u'ೇ': 'e', \
-        u'ೈ': 'ai', u'ೊ': 'o', u'ೋ': 'o', u'ೌ': 'au', \
-        u'ಕ್ಷ': 'ksh', u'ತ್ರ': 'tr', u'ಜ್ಞ': 'jn', \
-        u'೧': '1', u'೨': '2', u'೩': '3', u'೪': '4', u'೫': '5', \
-        u'೬': '6', u'೭': '7', u'೮': '8', u'೯': '9', u'೦': '0' \
-        }
+kannada_english_dict = {
+    u'ಅ': 'a', u'ಆ': 'aa', u'ಇ': 'i', u'ಈ': 'i', u'ಉ': 'u',
+    u'ಊ': 'u', u'ಋ': 'rri', u'ಎ': 'e', u'ಏ': 'e', u'ಐ': 'ai',
+    u'ಒ': 'o', u'ಓ': 'o', u'ಔ': 'au', u'ಂ': 'm', u'ಃ': 'h',
+    u'ಕ': 'k', u'ಖ': 'kh', u'ಗ': 'g', u'ಘ': 'gh', u'ಙ': 'ng',
+    u'ಚ': 'ch', u'ಛ': 'chh', u'ಜ': 'j', u'ಝ': 'jhh', u'ಞ': 'nj',
+    u'ತ': 'th', u'ಥ': 'thh', u'ದ': 'd', u'ಧ': 'dh', u'ನ': 'n',
+    u'ಟ': 'T', u'ಠ': 'Th', u'ಡ': 'D', u'ಢ': 'Dh', u'ಣ': 'N',
+    u'ಪ': 'p', u'ಫ': 'ph', u'ಬ': 'b', u'ಭ': 'bh', u'ಮ': 'm',
+    u'ಯ': 'y', u'ರ': 'r', u'ಲ': 'l', u'ವ': 'v', u'ಶ': 'sh',
+    u'ಷ': 'shh', u'ಸ': 's', u'ಹ': 'h', u'ಳ': 'L',
+    u'ಋ': 'rri', u'್': '', u'ಾ': 'aa', u'ಿ': 'i', u'ೀ': 'i',
+    u'ು': 'u', u'ೂ': 'u', u'ೃ': 'rri', u'ೆ': 'e', u'ೇ': 'e',
+    u'ೈ': 'ai', u'ೊ': 'o', u'ೋ': 'o', u'ೌ': 'au',
+    u'ಕ್ಷ': 'ksh', u'ತ್ರ': 'tr', u'ಜ್ಞ': 'jn',
+    u'೧': '1', u'೨': '2', u'೩': '3', u'೪': '4', u'೫': '5',
+    u'೬': '6', u'೭': '7', u'೮': '8', u'೯': '9', u'೦': '0'
+}
 
-kn_vowels = [u'ಅ', u'ಆ', u'ಇ', u'ಈ', u'ಉ', u'ಊ', u'ಋ', u'ಎ', u'ಏ', u'ಐ', \
-        u'ಒ', u'ಓ', u'ಔ']
-kn_vowel_signs = [u'್', u'ಾ', u'ಿ', u'ೀ', u'ು', u'ೂ', u'ೃ', u'ೆ', u'ೇ', \
-        u'ೈ', u'ೊ', u'ೋ', u'ೌ', u'ಂ', u'ಃ', u' ']
+kn_vowels = [u'ಅ', u'ಆ', u'ಇ', u'ಈ', u'ಉ', u'ಊ', u'ಋ', u'ಎ', u'ಏ', u'ಐ',
+             u'ಒ', u'ಓ', u'ಔ']
+kn_vowel_signs = [u'್', u'ಾ', u'ಿ', u'ೀ', u'ು', u'ೂ', u'ೃ', u'ೆ', u'ೇ',
+                  u'ೈ', u'ೊ', u'ೋ', u'ೌ', u'ಂ', u'ಃ', u' ']
 
-malayalam_english_dict = { \
-        u'അ': 'a', u'ആ': 'aa', u'ഇ': 'i', u'ഈ': 'ee', u'ഉ': 'u', u'ഊ': 'oo', \
-        u'ഋ': 'ri', \
-        u'എ': 'e', u'ഏ': 'e', u'ഐ': 'ai', u'ഒ': 'o', u'ഓ': 'o', u'ഔ': 'au', \
-        u'ക': 'k', u'ഖ': 'kh', u'ഗ': 'g', u'ഘ': 'gh', u'ങ്ങ': 'ng', \
-        u'ങ': 'ng', \
-        u'ച': 'ch', u'ഛ': 'chh', u'ജ': 'j', u'ഝ': 'jhh', u'ഞ': 'nj', \
-        u'ട': 't', u'ഠ': 'th', u'ഡ': 'd', u'ഢ': 'dh', u'ണ': 'n', \
-        u'ത': 'th', u'ഥ': 'th', u'ദ': 'd', u'ധ': 'dh', u'ന': 'n', \
-        u'പ': 'p', u'ഫ': 'ph', u'ബ': 'b', u'ഭ': 'bh', u'മ': 'm', \
-        u'യ': 'y', u'ര': 'r', u'ല': 'l',  u'വ': 'v',  u'റ': 'r', \
-        u'ശ': 's', u'ഷ': 'sh', u'സ': 's',  u'ഹ': 'h', u'ള': 'l', u'ഴ': 'zh', \
-        u'്': '', u'ം': 'm', u'ാ': 'aa', u'ി': 'i', u'ീ': 'ee', u'ു': 'u', \
-        u'ൂ': 'oo', u'ൃ': 'ri', u'െ': 'e', u'േ': 'e', \
-        u'ൈ': 'ai', u'ൊ': 'o', u'ോ': 'oo', u'ൗ': 'au', u'ൌ': 'ou' \
-        }
+malayalam_english_dict = {
+    u'അ': 'a', u'ആ': 'aa', u'ഇ': 'i', u'ഈ': 'ee', u'ഉ': 'u', u'ഊ': 'oo',
+    u'ഋ': 'ri',
+    u'എ': 'e', u'ഏ': 'e', u'ഐ': 'ai', u'ഒ': 'o', u'ഓ': 'o', u'ഔ': 'au',
+    u'ക': 'k', u'ഖ': 'kh', u'ഗ': 'g', u'ഘ': 'gh', u'ങ്ങ': 'ng',
+    u'ങ': 'ng',
+    u'ച': 'ch', u'ഛ': 'chh', u'ജ': 'j', u'ഝ': 'jhh', u'ഞ': 'nj',
+    u'ട': 't', u'ഠ': 'th', u'ഡ': 'd', u'ഢ': 'dh', u'ണ': 'n',
+    u'ത': 'th', u'ഥ': 'th', u'ദ': 'd', u'ധ': 'dh', u'ന': 'n',
+    u'പ': 'p', u'ഫ': 'ph', u'ബ': 'b', u'ഭ': 'bh', u'മ': 'm',
+    u'യ': 'y', u'ര': 'r', u'ല': 'l',  u'വ': 'v',  u'റ': 'r',
+    u'ശ': 's', u'ഷ': 'sh', u'സ': 's',  u'ഹ': 'h', u'ള': 'l', u'ഴ': 'zh',
+    u'്': '', u'ം': 'm', u'ാ': 'aa', u'ി': 'i', u'ീ': 'ee', u'ു': 'u',
+    u'ൂ': 'oo', u'ൃ': 'ri', u'െ': 'e', u'േ': 'e',
+    u'ൈ': 'ai', u'ൊ': 'o', u'ോ': 'oo', u'ൗ': 'au', u'ൌ': 'ou'
+}
 
-ml_vowels = [u'അ', u'ആ', u'ഇ', u'ഈ', u'ഉ', u'ഊ', u'ഋ', u'എ', u'ഏ', u'ഐ', \
-        u'ഒ', u'ഓ', u'ഔ']
-ml_vowel_signs = [u'്', u'ം', u'ാ', u'ി', u'ീ', u'ു', u'ൂ', u'ൃ', u'െ', u'േ', \
-        u'ൈ', u'ൊ', u'ോ', u'ൗ',  u'ൌ', u'‍']
+ml_vowels = [u'അ', u'ആ', u'ഇ', u'ഈ', u'ഉ', u'ഊ', u'ഋ', u'എ', u'ഏ', u'ഐ',
+             u'ഒ', u'ഓ', u'ഔ']
+ml_vowel_signs = [u'്', u'ം', u'ാ', u'ി', u'ീ', u'ു', u'ൂ', u'ൃ', u'െ', u'േ',
+                  u'ൈ', u'ൊ', u'ോ', u'ൗ',  u'ൌ', u'‍']
 
+hindi_english_dict = {
+    u'अ': 'a', u'आ': 'aa', u'इ': 'i', u'ई': 'i', u'उ': 'u',
+    u'ऊ': 'u', u'ऋ': 'rri', u'ए': 'e', u'ऐ': 'ai',
+    u'ओ': 'o', u'औ': 'au', u'ं': 'm', u'ಃ': 'h',
+    u'क': 'k', u'ख': 'kh', u'ग': 'g', u'घ': 'gh', u'ङ': 'ng',
+    u'च': 'ch', u'छ': 'chh', u'ज': 'j', u'झ': 'jhh', u'ञ': 'nj',
+    u'ट': 'th', u'ठ': 'thh', u'ड': 'd', u'ढ': 'dh', u'ण': 'n',
+    u'त': 'T', u'थ': 'Th', u'द': 'D', u'ध': 'Dh', u'न': 'N',
+    u'प': 'p', u'फ': 'ph', u'ब': 'b', u'भ': 'bh', u'म': 'm',
+    u'य': 'y', u'र': 'r', u'ल': 'l', u'व': 'v', u'ष': 'sh',
+    u'श': 'shh', u'स': 's', u'ह': 'h', u'ಳ': 'L',
+    u'ृ': 'rri', u'ा': 'aa', u'ि': 'i', u'ी': 'i',
+    u'ु': 'u', u'ू': 'u', u'ृ': 'rri', u'े': 'e', u'ॆ': 'e',
+    u'ै': 'ai', u'ो': 'o', u'ॊ': 'o', u'ौ': 'au',
+    u'क्ष': 'ksh', u'त्र': 'tr', u'ज्ञ': 'jn',
+    u'೧': '१', u'२': '2', u'३': '3', u'೪': '4', u'५': '5',
+    u'६': '6', u'७': '7', u'८': '8', u'९': '9', u'०': '0'
+}
+
+hi_vowels = [u'अ', u'आ', u'इ', u'ई', u'उ' u'ऊ', u'ऋ', u'ए',
+             u'ऐ', u'ओ', u'औ']
+hi_vowel_signs = [u'', u'ा', u'ि', u'ी', u'ु', u'ू', u'ृ', u'े', u'ॆ',
+                  u'ै', u'ो', u'ॊ', u'ौ', u'ं', u'ಃ']
 
 # P.S: Please declare all language related variables above this and
 # fill in the following mapping as you add dictionary vowels and
@@ -85,20 +109,24 @@ ml_vowel_signs = [u'്', u'ം', u'ാ', u'ി', u'ീ', u'ു', u'ൂ', u'ൃ'
 
 
 # language dictionary mapping
-language_dictionary = {"kn_IN": kannada_english_dict, \
-                           "ml_IN": malayalam_english_dict}
+language_dictionary = {"kn_IN": kannada_english_dict,
+                       "ml_IN": malayalam_english_dict,
+                       "hi_IN": hindi_english_dict}
 
 # language vowels mapping
-language_vowels = {"kn_IN": kn_vowels, "ml_IN": ml_vowels}
+language_vowels = {"kn_IN": kn_vowels,
+                   "ml_IN": ml_vowels,
+                   "hi_IN": hi_vowels}
 
 # language vowel signs mapping
-language_vowel_signs = {"kn_IN": kn_vowel_signs, \
-                            "ml_IN": ml_vowel_signs}
+language_vowel_signs = {"kn_IN": kn_vowel_signs,
+                        "ml_IN": ml_vowel_signs,
+                        "hi_IN": hi_vowel_signs}
 
 # language virama sign mapping
-language_virama = {"kn_IN": u"್", "ml_IN": u"്"}
+language_virama = {"kn_IN": u"್", "ml_IN": u"്", "hi_IN": u"्"}
 # language anuswara sign mapping
-language_anuswara = {"kn_IN": u"ಂ", "ml_IN": u'ം'}
+language_anuswara = {"kn_IN": u"ಂ", "ml_IN": u'ം', "hi_IN": "ं"}
 
 
 def get_dictionary_for(lang="ml_IN"):

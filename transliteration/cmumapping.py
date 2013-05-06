@@ -17,7 +17,7 @@
   # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.           #
   ############################################################################
 
-__all__ = ["CMU_MALAYALAM_MAP", "CMU_KANNADA_MAP"]
+__all__ = ["CMU_MALAYALAM_MAP", "CMU_KANNADA_MAP", "CMU_HINDI_MAP"]
 
 CMU_MALAYALAM_MAP = {
     "AA": "ഓ",
@@ -101,4 +101,47 @@ CMU_KANNADA_MAP = {
     "V": "ವ್",
     "Z": "ಸ್",
     "ZH": "ಷ್",
+}
+
+CMU_HINDI_MAP = {
+    "AA": "आ",
+    "AH": "अ",
+    "AE": "ए",
+    "AO": "औ",
+    "AW": "औ",
+    "AY": "ऐ",
+    "B": "ब",
+    "CH": "च",
+    "D": "ड",
+    "DH": "द",
+    "EA": "ई",
+    "EH": "ऐ",
+    "ER": "अर",
+    "EY": "एय",
+    "F": "फ",
+    "G": "ग",
+    "HH": "ह",
+    "IH": "इ",
+    "IY": "ई",
+    "J": "ज",
+    "JH": "झ",
+    "K": "क",
+    "L": "ल",
+    "M": "म",
+    "N": "न",
+    "NG": "ङ",
+    "OW": "ओ",
+    "P": "प",
+    "R": "र",
+    "S": "स",
+    "SH": "ष",
+    "T": "ट",
+    "TH": "त",
+    "Y":  "य",
+    "UW": "ऊ",
+    "UH": "उ",
+    "W": "व",
+    "V": "भ",
+    "Z": "ज़",
+    "ZH": "श",
 }
