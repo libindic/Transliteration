@@ -28,7 +28,7 @@ import string
 import normalizer
 from cmudict import CMUDict
 import indic_en
-from langdetect import _detect_lang
+from common.langdetect import _detect_lang
 from common.core import charmap
 
 lang_bases = {
