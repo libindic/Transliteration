@@ -16,6 +16,6 @@ to another Indian Language.""",
     include_package_data=True,    
     packages=find_packages(exclude='tests'),
     setup_requires=['setuptools-git'],
-    install_requires=['setuptools','normalizer'],
+    install_requires=['setuptools','normalizer','common'],
     zip_safe=False,
     )
