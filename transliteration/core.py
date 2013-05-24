@@ -28,7 +28,7 @@ import string
 import normalizer
 from cmudict import CMUDict
 import indic_en
-from common.langdetect import _detect_lang
+from common.langdetect import detect_lang
 from common.core import charmap
 
 lang_bases = {
@@ -305,7 +305,7 @@ class Transliterator:
             for word in words:
                 if(word.strip() > ""):
                     try:
-                        src_lang_code = _detect_lang(word)[word]
+                        src_lang_code = detect_lang(word)[word]
                     except:
                         tx_str = tx_str + " " + word
                         continue  # FIXME
