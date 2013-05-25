@@ -4,7 +4,7 @@ name='transliteration'
 
 setup (
     name=name,
-    version="0.3",
+    version="0.4",
     url="http://silpa.org.in/Transliterate",
     license="LGPL 3.0",
     description="Indian Language Transliteration Library",
@@ -16,6 +16,6 @@ to another Indian Language.""",
     include_package_data=True,    
     packages=find_packages(exclude='tests'),
     setup_requires=['setuptools-git'],
-    install_requires=['setuptools','normalizer','common'],
+    install_requires=['setuptools','normalizer','silpa_common'],
     zip_safe=False,
     )
