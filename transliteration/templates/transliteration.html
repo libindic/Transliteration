@@ -1,0 +1,86 @@
+{% extends "silpa.html" %}
+{% block modulescript %}
+<script>
+$(document).ready(function() {
+    id_result = $('#successmessage');
+    id_error = $('#errormessage');
+    id_progress = $('#progress');
+
+    $("form").submit(function(event)
+    {
+        event.preventDefault();
+        var text = $("textarea[name=input_text]", 'form').val();
+        var targetlang = $("select[name=lang]", 'form').val();
+        var jsonRequest = {
+            "method" : "transliteration.transliterate",
+            "params" : [text, targetlang],
+            "id" : ""
+            };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "JSONRPC",
+            data: JSON.stringify(jsonRequest),
+            dataType: "json",
+            beforeSend:function(){
+                id_result.hide();
+                id_error.hide();
+                id_progress.html("Transliterating. Please Wait...").show();
+            },
+            success: function(msg) {
+                id_progress.hide();
+                if(msg.result==null){
+                    // Render it
+                    id_result.html(msg.message).show();
+                }
+                else{
+                    var result = msg.result.replace("\n", "&#13;")
+                    // Render it
+                    id_result.html(result).show();
+                }
+            },
+            error: function(msg) {
+                id_progress.hide();
+                id_error.html("Something went wrong. Please try again!").show();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+{% block content %}
+<div class="well">
+  <h2>Transliterator</h2></hr>
+  <p>This application helps you to transliterate text from any Indian language to any other Indian language. Enter the text for transliteration in the below text area. Language of each  word will be detected. You can give the text in any language and even with mixed language. For Malayalam alone, English->Malayalam, Malayalam->English Transliteration is available.</p>
+  <p><a href="http://en.wikipedia.org/wiki/ISO_15919">ISO 15919</a>, an international standard for the transliteration of Indic scripts to the Latin alphabet formed in 2001 is also supported. Select ISO 15919:2001 for 'Transliterate To' for using this scheme.</p>
+  <p>Transliteration to <a href="http://en.wikipedia.org/wiki/IPA"> International Phonetic Alphabet</a> is also available.</p>
+  <form action="" method="post">
+    <textarea name='input_text' id='input_text' rows="10" style="width: 98.5%;"></textarea></br>
+    <div class="control-group">
+      <label class="control-label" for="lang">Transliterate To : </label>
+        <div class="controls">
+          <select id="lang" name="lang">
+            <option value="hi_IN">Hindi</option>
+            <option value="ml_IN">Malayalam</option>
+            <option value="bn_IN">Bengali</option>
+            <option value="ta_IN">Tamil</option>
+            <option value="te_IN">Telugu</option>
+            <option value="or_IN">Oriya</option>
+            <option value="gu_IN">Gujarati</option>
+            <option value="pa_IN">Punjabi</option>
+            <option value="kn_IN">Kannada</option>
+            <option value="en_US">English</option>
+            <option value="ISO15919">ISO 15919:2001</option>
+            <option value="IPA">International Phonetical Alphabet(IPA)</option>
+          </select>
+        </div>
+    </div>
+    <input type="submit" id="Transliterate" value="Transliterate"  name="action" class="btn"/>
+    </br>
+  </form>
+  <div id="progress" class="alert alert-info hide"></div>
+  <div id="successmessage" class="alert alert-success hide"></div>
+  <div id="errormessage" class="alert alert-error hide"></div>
+<div>
+<hr/>
+{% endblock %}
