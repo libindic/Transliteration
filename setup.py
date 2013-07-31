@@ -4,7 +4,7 @@ name='transliteration'
 
 setup (
     name=name,
-    version="0.4",
+    version="0.4.1",
     url="http://silpa.org.in/Transliterate",
     license="LGPL 3.0",
     description="Indian Language Transliteration Library",
