@@ -13,9 +13,10 @@ setup (
     long_description="""This library helps in transliteration
 from English to Indian Language and from one Indian Language
 to another Indian Language.""",
-    include_package_data=True,    
+    include_package_data=True,
     packages=find_packages(exclude='tests'),
     setup_requires=['setuptools-git'],
     install_requires=['setuptools','normalizer','silpa_common'],
+    test_suite="tests",
     zip_safe=False,
     )
