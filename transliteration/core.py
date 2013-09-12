@@ -39,12 +39,19 @@ lang_bases = {
 
 
 class Transliterator:
+    """
+    Transliteration class, instantiate this to get access  to the transliteration methods
+    """
     def __init__(self):
         self.cmu = CMUDict()
         self.normalizer = normalizer.getInstance()
 
     def transliterate_en_ml(self, word):
         """
+        :param word: The word to be transliterated.
+        :type word: str.
+        :returns: the translated word.
+
         Transliterate English to Malayalam with the help of
         CMU pronuciation dictionary
         """
@@ -52,6 +59,10 @@ class Transliterator:
 
     def transliterate_en_kn(self, word):
         """
+        :param word: The word to be transliterated.
+        :type word: str.
+        :returns: the translated word.
+
         Transliterate English to Kannada with the help of
         CMU pronuciation dictionary
         """
@@ -59,6 +70,10 @@ class Transliterator:
 
     def transliterate_en_hi(self, word):
         """
+        :param word: The word to be transliterated.
+        :type word: str.
+        :returns: the translated word.
+
         Transliterate English to Hindi with the help of
         CMU pronuciation dictionary
         """
@@ -66,6 +81,12 @@ class Transliterator:
 
     def transliterate_en_xx(self, word, target_lang):
         """
+        :param word: The word to be transliterated.
+        :type word: str.
+        :param target_lang: The language into which word has to be transliterated.
+        :type target_lang: str.
+        :returns: the translated word.
+
         Transliterate English to any Indian Language.
         """
         if target_lang == "en_IN" or target_lang == "en_US":
@@ -93,6 +114,12 @@ class Transliterator:
 
     def transliterate_xx_en(self, word, src_lang):
         """
+        :param word: The word to be transliterated.
+        :type word: str.
+        :param src_lang: The language of the word.
+        :type src_lang: str.
+        :returns: the translated word.
+
         Transliterate Indian Language to English.
         """
         if src_lang == "en_IN" or src_lang == "en_US":
@@ -134,6 +161,12 @@ class Transliterator:
         """
         Transliterate the given word in src_language to
         IPA - International Phonetical Alphabet notation.
+
+        :param word: The word to be transliterated.
+        :type word: str.
+        :returns: the translated word.
+        :param src_lang: The language of the word.
+        :type src_lang: str.
         """
         tx_str = ""
         index = 0
@@ -174,8 +207,17 @@ class Transliterator:
 
     def transliterate_indic_indic(self, word, src_lang, target_lang):
         """
-            Transliterate from an Indian languge word
-            to another indian language word
+        Transliterate from an Indian languge word
+        to another indian language word
+
+        :param word: The word to be transliterated.
+        :type word: str.
+        :param src_lang: The language of the word.
+        :type src_lang: str.
+        :param target_lang: The language into which word has to be transliterated.
+        :type target_lang: str.
+        :returns: the translated word.
+
         """
         index = 0
         tx_str = ""
@@ -298,6 +340,17 @@ class Transliterator:
         return tx_string
 
     def transliterate(self, text, target_lang_code):
+        """
+        :param text: The text to be transliterated.
+        :type text: str.
+        :param target_lang_code: The language into which word has to be transliterated.
+        :type target_lang_code: str.
+        :returns: the translated text.
+
+        The transliteration functioon which can transliterate text to the
+        supported target languages.
+
+        """
         tx_str = ""
         lines = text.split("\n")
         for line in lines:
@@ -366,11 +419,20 @@ class Transliterator:
             return 0
 
     def get_module_name(self):
+        """
+        returns module name
+        """
         return "Transliterator"
 
     def get_info(self):
+        """
+        Returns module info
+        """
         return "Transliterate the text between any Indian Language"
 
 
 def getInstance():
+    """
+    returns instance of :class: `Transliterator`
+    """
     return Transliterator()
