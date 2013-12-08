@@ -2,20 +2,20 @@
 {% block modulescript %}
 <script>
 $(document).ready(function() {
-    id_result = $('#successmessage');
-    id_error = $('#errormessage');
-    id_progress = $('#progress');
-
-    $("form").submit(function(event)
-    {
+    $("form").submit(function(event) {
         event.preventDefault();
-        var text = $("textarea[name=input_text]", 'form').val();
-        var targetlang = $("select[name=lang]", 'form').val();
-        var jsonRequest = {
-            "method" : "transliteration.transliterate",
-            "params" : [text, targetlang],
-            "id" : ""
-            };
+        var id_result = $('#successmessage'),
+            id_error = $('#errormessage'),
+            id_progress = $('#progress'),
+            text = $("textarea[name=input_text]", 'form').val(),
+            targetlang = $("select[name=lang]", 'form').val(),
+            jsonRequest = {
+                "method" : "transliteration.transliterate",
+                "params" : [text, targetlang],
+                "id" : ""
+                },
+            result;
+
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -29,15 +29,8 @@ $(document).ready(function() {
             },
             success: function(msg) {
                 id_progress.hide();
-                if(msg.result==null){
-                    // Render it
-                    id_result.html(msg.message).show();
-                }
-                else{
-                    var result = msg.result.replace("\n", "&#13;")
-                    // Render it
-                    id_result.html(result).show();
-                }
+                result = (msg.result ? msg.result.replace("\n", "&#13;") : msg.message);
+                id_result.html(result).show();
             },
             error: function(msg) {
                 id_progress.hide();
