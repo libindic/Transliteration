@@ -5,10 +5,9 @@ other Indian Language. This module is originally part of
 of restructuring.
 
 ## Usage ##
-`from transliteration import transliterate`
-` t = transliterate.Transliterator.get_instance()`
+` from transliteration import getInstance as instance`
 ` text = u"ನಮಸ್ಕಾರ"`
-` t_text = t.transliterate(text,"ml")`
+` t_text = instance().transliterate(text,"ml_IN")`
 ` print t_text #"നമസ്കാര"`
 
 
