@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-from core import Transliterator, getInstance
+from transliteration.core import Transliterator, getInstance
 
 
