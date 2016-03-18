@@ -345,7 +345,7 @@ class Transliterator:
         :type text: str.
         :param target_lang_code: The language into which word has to be transliterated.
         :type target_lang_code: str.
-        :returns: the translated text.
+        :returns: the transliterated text.
 
         The transliteration functioon which can transliterate text to the
         supported target languages.
