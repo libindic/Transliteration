@@ -30,6 +30,7 @@ from cmudict import CMUDict
 import indic_en
 from silpa_common.langdetect import detect_lang
 from silpa_common.charmap import charmap
+import ipa_map
 
 lang_bases = {
     'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981,
@@ -43,8 +44,16 @@ class Transliterator:
     Transliteration class, instantiate this to get access  to the transliteration methods
     """
     def __init__(self):
-        self.cmu = CMUDict()
+        # normal CMU Dictionary instance
+        self.cmu = CMUDict('cmudict.0.7a_SPHINX_40')
+
+        # CMU Dictionary instance with Lexical Stress
+        self.LexCMU = CMUDict('cmudict.0.7a_LexStress')
+
         self.normalizer = normalizer.getInstance()
+
+        # Dictionary object for IPA Symbol mapping
+        self.IPAmap = ipa_map.IPA_Symbol_MAP
 
     def transliterate_en_ml(self, word):
         """
@@ -168,6 +177,44 @@ class Transliterator:
         :param src_lang: The language of the word.
         :type src_lang: str.
         """
+        # IPA representation of word
+        result = ""
+
+        # equalivalent english word to given word
+        en_word = self.transliterate_xx_en(word, src_language)
+
+        # list containing phoneme represented by one or two capital letters
+        phoneme = self.LexCMU.find(en_word)
+
+        # if valid response by CMU Dictionary
+        if phoneme:
+            for sym in phoneme:
+
+                # valid phonetic symbol with Lexical Stress
+                if (len(sym) > 2):
+                    if (sym[:2] == 'AH'):
+                        result =  result + self.IPAmap[sym]
+                    else:
+                        result = result + self.IPAmap[sym[:2]]
+
+                # valid phonetic symbol without Lexical Stress
+                elif self.IPAmap.get(sym):
+                    result =  result + self.IPAmap[sym]
+
+                # simple alphabatic letter
+                elif sym.isalpha():
+                    result = result + sym.lower()
+
+            # return phoneme
+            return result.decode("utf-8")
+
+        # return original word, if no match in CMU
+        else:
+            return en_word.decode("utf-8")
+
+
+        
+        """
         tx_str = ""
         index = 0
         word_length = len(word)
@@ -192,6 +239,7 @@ class Transliterator:
             # if last letter
             # remove the last 'a'
         return tx_str.decode("utf-8")
+        """
 
     def _malayalam_fixes(self, text):
         try:

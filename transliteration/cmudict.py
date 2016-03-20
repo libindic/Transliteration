@@ -27,15 +27,16 @@ from cmumapping import *
 
 
 class CMUDict():
-    def __init__(self):
+    def __init__(self, CMUDictFile):
         self.dictionaryfile = os.path.join(os.path.dirname(__file__),
-                                           'cmudict.0.7a_SPHINX_40')
+                                           CMUDictFile)
         self.cmudictionary = None
 
     def load(self):
         fdict = open(self.dictionaryfile, "r")
         flines = fdict.readlines()
         linecount = len(flines)
+
         self.cmudictionary = dict()
         for line in flines:
             line = line.strip()
@@ -46,7 +47,10 @@ class CMUDict():
     def find(self, word):
         if self.cmudictionary is None:
             self.load()
-        return self.cmudictionary[word.upper()]
+
+        # now returns 'None' instead of 'KeyError'
+        # if key is not there in dictionary
+        return self.cmudictionary.get(word.upper())
 
     def pronunciation(self, word, language):
         stripped_word = word.strip('!,.?:')
