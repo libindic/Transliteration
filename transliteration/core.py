@@ -29,7 +29,7 @@ import normalizer
 from cmudict import CMUDict
 import indic_en
 from silpa_common.langdetect import detect_lang
-from silpa_common.charmap import charmap
+from silpa_common.charmap import charmap, charmap_transphon
 
 lang_bases = {
     'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981,
@@ -181,7 +181,7 @@ class Transliterator:
             if offset >= 61 and offset <= 76:
                 tx_str = tx_str[:-(len('ə'))]  # remove the last 'ə'
             if offset > 0 and offset <= 128:
-                tx_str = tx_str + charmap["IPA"][offset]
+                tx_str = tx_str + charmap_transphon["IPA"][offset]
             #delete the inherent 'a' at the end of the word from hindi
             if tx_str[-1:] == 'ə' and \
                (src_language == "hi_IN"

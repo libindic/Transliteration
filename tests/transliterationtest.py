@@ -46,6 +46,14 @@ class TransliterationTest(unittest.TestCase):
                          u"namaskaar silpaa kee duniyaa mem"
                          " aapakaa svaagath hai")
 
+    def testHindiToIPA(self):
+        result = self.t.transliterate(self.hi, 'IPA')
+        print result.encode('utf-8')
+        self.assertEqual(result.strip(),
+                         u"n̪əməskaːɾə silpaː kiː d̪un̪ijaː mɛːm"
+                         u" aːpəkaː sʋaːgət̪ə ɦɔ")
+
+
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TransliterationTest)
     unittest.TextTestRunner(verbosity=2).run(suite)
