@@ -79,7 +79,7 @@ class CMUDict():
                     pronunciation_str += CMU_HINDI_MAP[symbol]
                 except KeyError:
                     pronunciation_str += symbol
-                pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
+            pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
         return (pronunciation_str).decode("utf-8") + punctuations
 
     def _fix_vowel_signs_ml(self, text):
@@ -130,16 +130,23 @@ class CMUDict():
         return text
 
     def _fix_vowel_signs_hi(self, text):
-        text = text.replace("अ", "")
-        text = text.replace("आ", "ा")
-        text = text.replace("इ", "ि")
-        text = text.replace("ई", "ी")
-        text = text.replace("उ", "ु")
-        text = text.replace("ऊ", "ू")
-        text = text.replace("ऋ", "ृ")
-        text = text.replace("ए", "े")
-        text = text.replace("ऐ", "ै")
-        text = text.replace("ओ", "ो")
-        text = text.replace("औ", "ौ")
-        text = text.replace("ङ", "न्")
-        return text
+        swar = ["अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ए", "ऐ", "ओ", "औ"]
+        swar_dict = {
+            "अ": "", "आ": "ा", "इ": "ि", "ई": "ी", "उ": "ु", "ऊ": "ू",
+            "ऋ": "ृ", "ए": "े", "ऐ": "ै", "ओ": "ो", "औ": "ौ", "ङ": "न्"
+        }
+
+        return_text = ""
+
+        text = list(text.decode("utf-8"))
+
+        for i in range(len(text)):
+            sub_text = text[i].encode("utf-8")
+            if i > 0 and sub_text in swar and text[i-1].encode("utf-8") not in swar:
+                return_text += swar_dict[sub_text]
+            elif sub_text == "ङ" and i != (len(text)-1):
+                return_text += swar_dict[sub_text]
+            else:
+                return_text += sub_text
+
+        return return_text
