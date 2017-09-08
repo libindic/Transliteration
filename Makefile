@@ -1,7 +1,7 @@
 travis:
 	python setup.py test --coverage \
 		--coverage-package-name=transliteration
-	flake8 --max-complexity 10 --ignore F401 libindic/transliteration
+	flake8 --max-complexity 20 --ignore F401 libindic/transliteration
 
 clean:
 	find . -iname "*.pyc" -exec rm -vf {} \;

@@ -23,7 +23,7 @@
 # URL: http://www.smc.org.in
 
 import os
-from cmumapping import *
+from .cmumapping import CMU_MALAYALAM_MAP, CMU_KANNADA_MAP, CMU_HINDI_MAP
 
 
 class CMUDict():
@@ -35,7 +35,6 @@ class CMUDict():
     def load(self):
         fdict = open(self.dictionaryfile, "r")
         flines = fdict.readlines()
-        linecount = len(flines)
         self.cmudictionary = dict()
         for line in flines:
             line = line.strip()
@@ -54,7 +53,8 @@ class CMUDict():
         try:
             cmu_pronunciation = self.find(stripped_word)
         except KeyError:
-            #print "could not find the word" + stripped_word + " in dictionary"
+            # print "could not find the word" + stripped_word + " in
+            # dictionary"
             return word
         pronunciation_str = ""
         if language == "ml_IN":
@@ -80,7 +80,12 @@ class CMUDict():
                 except KeyError:
                     pronunciation_str += symbol
                 pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
-        return (pronunciation_str).decode("utf-8") + punctuations
+        try:
+            decoded_string = (pronunciation_str).decode("utf-8")  # noqa: F821
+            result = decoded_string + punctuations
+        except BaseException:
+            result = pronunciation_str + punctuations
+        return result
 
     def _fix_vowel_signs_ml(self, text):
         text = text.replace("്അ", "")

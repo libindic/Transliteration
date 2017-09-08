@@ -1,23 +1,23 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#indic_en.py
+# indic_en.py
 #
-#Copyright 2010 Vasudev Kamath <kamathvasudev@gmail.com>
+# Copyright 2010 Vasudev Kamath <kamathvasudev@gmail.com>
 #
-#This program is free software; you can redistribute it and/or modify
-#it under the terms of the GNU  General Public License as published by
-#the Free Software Foundation; either version 3 of the License, or
-#(at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU  General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
 #
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#You should have received a copy of the GNU General Public License
-#along with this program; if not, write to the Free Software
-#Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#MA 02110-1301, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA 02110-1301, USA.
 #
 '''
 This file contains all language related dictionaries vowel and vowel signs
@@ -67,8 +67,8 @@ malayalam_english_dict = {
     u'ട': 't', u'ഠ': 'th', u'ഡ': 'd', u'ഢ': 'dh', u'ണ': 'n',
     u'ത': 'th', u'ഥ': 'th', u'ദ': 'd', u'ധ': 'dh', u'ന': 'n',
     u'പ': 'p', u'ഫ': 'ph', u'ബ': 'b', u'ഭ': 'bh', u'മ': 'm',
-    u'യ': 'y', u'ര': 'r', u'ല': 'l',  u'വ': 'v',  u'റ': 'r',
-    u'ശ': 's', u'ഷ': 'sh', u'സ': 's',  u'ഹ': 'h', u'ള': 'l', u'ഴ': 'zh',
+    u'യ': 'y', u'ര': 'r', u'ല': 'l', u'വ': 'v', u'റ': 'r',
+    u'ശ': 's', u'ഷ': 'sh', u'സ': 's', u'ഹ': 'h', u'ള': 'l', u'ഴ': 'zh',
     u'്': '', u'ം': 'm', u'ാ': 'aa', u'ി': 'i', u'ീ': 'ee', u'ു': 'u',
     u'ൂ': 'oo', u'ൃ': 'ri', u'െ': 'e', u'േ': 'e',
     u'ൈ': 'ai', u'ൊ': 'o', u'ോ': 'oo', u'ൗ': 'au', u'ൌ': 'ou'
@@ -77,7 +77,7 @@ malayalam_english_dict = {
 ml_vowels = [u'അ', u'ആ', u'ഇ', u'ഈ', u'ഉ', u'ഊ', u'ഋ', u'എ', u'ഏ', u'ഐ',
              u'ഒ', u'ഓ', u'ഔ']
 ml_vowel_signs = [u'്', u'ം', u'ാ', u'ി', u'ീ', u'ു', u'ൂ', u'ൃ', u'െ', u'േ',
-                  u'ൈ', u'ൊ', u'ോ', u'ൗ',  u'ൌ', u'‍']
+                  u'ൈ', u'ൊ', u'ോ', u'ൗ', u'ൌ', u'‍']
 
 hindi_english_dict = {
     u'अ': 'a', u'आ': 'aa', u'इ': 'i', u'ई': 'ee', u'उ': 'u',
