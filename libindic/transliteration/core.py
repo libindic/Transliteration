@@ -25,7 +25,7 @@
 __all__ = ['Transliterator', 'getInstance']
 
 import string
-import normalizer
+from libindic.normalizer import Normalizer
 from cmudict import CMUDict
 import indic_en
 from silpa_common.langdetect import detect_lang
@@ -44,7 +44,7 @@ class Transliterator:
     """
     def __init__(self):
         self.cmu = CMUDict()
-        self.normalizer = normalizer.getInstance()
+        self.normalizer = Normalizer()
 
     def transliterate_en_ml(self, word):
         """
