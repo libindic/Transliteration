@@ -1,0 +1,2 @@
+ silpa_common
+ -e git+https://github.com/libindic/normalizer.git#egg=libindic_normalizer

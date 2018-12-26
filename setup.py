@@ -16,7 +16,7 @@ to another Indian Language.""",
     include_package_data=True,
     packages=find_packages(exclude='tests'),
     setup_requires=['setuptools-git'],
-    install_requires=['setuptools','normalizer','silpa_common'],
+    install_requires=['setuptools'],
     test_suite="tests",
     zip_safe=False,
     )
