@@ -23,7 +23,7 @@
 # URL: http://www.smc.org.in
 
 import os
-from cmumapping import *
+from .cmumapping import *
 
 
 class CMUDict():
@@ -80,7 +80,7 @@ class CMUDict():
                 except KeyError:
                     pronunciation_str += symbol
                 pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
-        return (pronunciation_str).decode("utf-8") + punctuations
+        return pronunciation_str + punctuations
 
     def _fix_vowel_signs_ml(self, text):
         text = text.replace("്അ", "")

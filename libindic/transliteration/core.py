@@ -26,10 +26,10 @@ __all__ = ['Transliterator', 'getInstance']
 
 import string
 import normalizer
-from cmudict import CMUDict
-import indic_en
-from silpa_common.langdetect import detect_lang
-from silpa_common.charmap import charmap, charmap_transphon
+from .cmudict import CMUDict
+from . import indic_en
+from libindic.utils.langdetect import detect_lang
+from libindic.utils.charmap import charmap, charmap_transphon
 
 lang_bases = {
     'en_US': 0, 'en_IN': 0, 'hi_IN': 0x0901, 'bn_IN': 0x0981,
@@ -228,15 +228,15 @@ class Transliterator:
             #replace all samvruthokaram by u vowels
             word = word.replace(u"ു്", u"")
 
-        for chr in word:
+        for character in word:
             index += 1
-            if chr in string.punctuation or (ord(chr) <= 2304
-                                             and ord(chr) >= 3071):
-                tx_str = tx_str + chr
+            if character in string.punctuation or (ord(character) <= 2304
+                                             and ord(character) >= 3071):
+                tx_str = tx_str + character
                 continue
-            offset = ord(chr) + self.getOffset(src_lang, target_lang)
+            offset = ord(character) + self.getOffset(src_lang, target_lang)
             if(offset > 0):
-                tx_str = tx_str + unichr(offset)
+                tx_str = tx_str + chr(offset)
             #schwa deletion
             baseoffset = offset - lang_bases[target_lang]
             #76 : virama
@@ -246,7 +246,7 @@ class Transliterator:
                          or target_lang == "pa_IN"
                          or target_lang == "bn_IN")):
                 #TODO Add more languages having schwa deletion characteristic
-                tx_str = tx_str[:-(len(chr))]  # remove the last 'a'
+                tx_str = tx_str[:-(len(character))]  # remove the last 'a'
 
             if target_lang == "ml_IN" and src_lang == "ta_IN":
                 tx_str = tx_str.replace(u"ഩ", u"ന")

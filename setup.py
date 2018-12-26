@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-name='transliteration'
+name='libindic.transliteration'
 
 setup (
     name=name,
