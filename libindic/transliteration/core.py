@@ -25,9 +25,9 @@
 __all__ = ['Transliterator', 'getInstance']
 
 import string
-import normalizer
 from .cmudict import CMUDict
 from . import indic_en
+from libindic.normalizer import Normalizer
 from libindic.utils.langdetect import detect_lang
 from libindic.utils.charmap import charmap, charmap_transphon
 
@@ -44,7 +44,7 @@ class Transliterator:
     """
     def __init__(self):
         self.cmu = CMUDict()
-        self.normalizer = normalizer.getInstance()
+        self.normalizer = Normalizer()
 
     def transliterate_en_ml(self, word):
         """
