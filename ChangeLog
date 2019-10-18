@@ -1,0 +1,54 @@
+CHANGES
+=======
+
+* Use normializer from libindic
+* Do not depend on outdated normalizer at pypi
+* Fix imports
+* Rename template
+* इ  and ई  translation from Hindi to English Fixed
+* added test for hindi to IPA
+* updated reference to charmap\_transphon. fixes #10
+* spelling mistake
+* fix language code in usage section
+* fix sample code in README
+* styling usage section in readme file
+* Revert "fix sample code for using Transliteration and module's \_\_init\_\_.py accordingly"
+* fix sample code for using Transliteration and module's \_\_init\_\_.py accordingly
+* add jquery.ime
+* new ui
+* improve javascript code
+* updated README with docs link
+* addin gsphinx based documentaion
+* added docstrings for sphinx
+* run tets with setup.py test
+* Bumped version to 0.4.1 template is now part of module
+* moved templates
+
+0.4
+---
+
+* Bumped version to 0.4
+* Use silpa\_common instead of common
+* Renamed \_detect\_lang to detect\_lang
+* Removed langdetect
+* Test cases for Hindi(hi\_IN) & addition of charmap from Common module Issue 3 Fixed IPA and ISO transliteration working
+* Improved Hindi Transliteration
+* Bumped version to include fix
+* changes according to import method change did at last commit
+* fix error while translating to indic languages
+* merge
+* pep8 cleaning
+* fix to make transliteration work properly
+* Fixed test script looks like transliteration module adds extra space needs to fix  it
+* Permission change
+* Added missing language detect file
+* Test case added
+* Minor fixes and removed MANIFEST its not required if using setuptools-git
+* Big number of restructuring
+* Moved module out of src directory
+* Less frustrating method to include non-python data
+* Minor modification in package structure
+* Fixing md in README
+* Added some information
+* self argument is removed from @staticmethod functions
+* first commit

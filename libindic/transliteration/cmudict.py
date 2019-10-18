@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Any Indian Language to any other Indian language transliterator
 # Copyright 2008-2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>

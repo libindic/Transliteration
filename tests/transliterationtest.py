@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #-*- coding: utf-8 -*-
 import sys
 sys.path.append('..')
-import transliteration
+import libindic.transliteration
 import unittest
 
 
@@ -15,40 +15,40 @@ class TransliterationTest(unittest.TestCase):
 
     def testKannadaToEnglish(self):
         result = self.t.transliterate(self.kn, "en_US")
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result.strip(),
                          "namaskaara idu kannaDa paThya"
                          " TraansliTareshhan parikshhegaagi")
 
     def testEnglishToKannada(self):
         result = self.t.transliterate(self.en, "kn_IN")
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result.strip(),
                          u"ದಿಸ್ ಇಸ್ ಅ ಇಂಗ್ಗ್ಲಿಷ್ ಟೆಕ್ಸ್ಟ್ ಫೋರ್"
                          " transliteration")
 
     def testKannadaToTamil(self):
         result = self.t.transliterate(self.kn, "ta_IN")
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result,
                          u"நமஸ்காரஇதுகந்நடபட்யட்ராந்ஸ்லிடரேஷந்பரீக்ஷெகாகி")
 
     def testEnglishToHindi(self):
         result = self.t.transliterate(self.en, "hi_IN")
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result.strip(),
                          u"दिस इज़  इन्गलिष टैक्स्ट फौर transliteration")
 
     def testHindiToEnglish(self):
         result = self.t.transliterate(self.hi, "en_US")
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result.strip(),
                          u"namaskaar silpaa kee duniyaa mem"
                          " aapakaa svaagath hai")
 
     def testHindiToIPA(self):
         result = self.t.transliterate(self.hi, 'IPA')
-        print result.encode('utf-8')
+        print(result.encode('utf-8'))
         self.assertEqual(result.strip(),
                          u"n̪əməskaːɾə silpaː kiː d̪un̪ijaː mɛːm"
                          u" aːpəkaː sʋaːgət̪ə ɦɔ")

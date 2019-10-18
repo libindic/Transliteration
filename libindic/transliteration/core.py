@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Any Indian Language to any other Indian language transliterator
 # Copyright 2009-2010 Santhosh Thottingal <santhosh.thottingal@gmail.com>
@@ -191,7 +191,8 @@ class Transliterator:
                 and word_length > 1): tx_str = tx_str[:-(len('ə'))]
             # if last letter
             # remove the last 'a'
-        return tx_str.decode("utf-8")
+        # return tx_str.decode("utf-8")
+        return tx_str
 
     def _malayalam_fixes(self, text):
         try:
