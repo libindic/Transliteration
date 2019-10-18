@@ -7,6 +7,7 @@ dist
 build
 docs/_build
 eggs
+.eggs
 parts
 bin
 develop-eggs
