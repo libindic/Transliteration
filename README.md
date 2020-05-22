@@ -9,6 +9,7 @@ other Indian Language. This module is a part of
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
+pip install .
 ```
 
 ## Usage ##
