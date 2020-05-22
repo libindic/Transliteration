@@ -42,6 +42,7 @@ class CMUDict():
             lhs = line.split()[0]
             rhs = line.split()[1:]
             self.cmudictionary[lhs] = rhs
+        fdict.close()
 
     def find(self, word):
         if self.cmudictionary is None:

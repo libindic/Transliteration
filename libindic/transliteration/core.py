@@ -155,7 +155,10 @@ class Transliterator:
                                        or src_language == "bn_IN"):
                 if word_length == index and word_length > 1:  # if last letter
                     tx_str = tx_str[:-1]  # remove the last 'a'
-        return tx_str .decode("utf-8")
+        try:
+            return tx_str .decode("utf-8")
+        except AttributeError:
+            return tx_str
 
     def transliterate_ipa(self, word, src_language):
         """
@@ -191,7 +194,10 @@ class Transliterator:
                 and word_length > 1): tx_str = tx_str[:-(len('ə'))]
             # if last letter
             # remove the last 'a'
-        return tx_str.decode("utf-8")
+        try:
+            return tx_str .decode("utf-8")
+        except AttributeError:
+            return tx_str
 
     def _malayalam_fixes(self, text):
         try:
