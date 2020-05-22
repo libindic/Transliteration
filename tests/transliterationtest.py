@@ -4,6 +4,14 @@ import sys
 sys.path.append('..')
 from libindic import transliteration
 import unittest
+from libindic.transliteration.cmudict import remove_halant_at_word_end_hi
+
+class unitsTest(unittest.TestCase):
+    def testHalantRemovalWorks(self):
+        input = "दिस्"
+        expected = "दिस"
+        actual = remove_halant_at_word_end_hi(input)
+        self.assertEqual(actual, expected)
 
 
 class TransliterationTest(unittest.TestCase):
@@ -12,6 +20,7 @@ class TransliterationTest(unittest.TestCase):
         self.kn = u"ನಮಸ್ಕಾರ ಇದು ಕನ್ನಡ ಪಠ್ಯ ಟ್ರಾನ್ಸ್ಲಿಟರೇಷನ್ ಪರೀಕ್ಷೆಗಾಗಿ"
         self.hi = u"नमस्कार सिल्पा की दुनिया में आपका स्वागत है"
         self.en = "This is a english text for transliteration"
+        self.ml = "ഇത് ഒരു മലയാളം വാക്യമാണ്"
 
     def testKannadaToEnglish(self):
         result = self.t.transliterate(self.kn, "en_US")
@@ -33,7 +42,7 @@ class TransliterationTest(unittest.TestCase):
     def testEnglishToHindi(self):
         result = self.t.transliterate(self.en, "hi_IN")
         self.assertEqual(result.strip(),
-                         u"दिस इज़  इन्गलिष टैक्स्ट फौर transliteration")
+                         u"दिस इज़ अ इन्ग्लिष टैक्स्ट फौर transliteration")
 
     def testHindiToEnglish(self):
         result = self.t.transliterate(self.hi, "en_US")
@@ -46,6 +55,17 @@ class TransliterationTest(unittest.TestCase):
         self.assertEqual(result.strip(),
                          u"n̪əməskaːɾə silpaː kiː d̪un̪ijaː mɛːm"
                          u" aːpəkaː sʋaːgət̪ə ɦɔ")
+
+    def testMalayalamToEnglish(self):
+        result = self.t.transliterate(self.ml, "en_US")
+        self.assertEqual(result.strip(),
+                         "ith oru malayaalam vaakyamaan")
+
+    def testEnglishToMalayalam(self):
+        result = self.t.transliterate(self.en, "ml_IN")
+        self.assertEqual(result.strip(),
+                         u"ദിസ് ഇസ് അ ഇങ്ഗ്ലിഷ് റ്റെക്സ്റ്റ് ഫോര്‍"
+                         " transliteration")
 
 
 if __name__ == "__main__":

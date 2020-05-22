@@ -24,7 +24,10 @@
 
 import os
 from .cmumapping import *
+import re
 
+def remove_halant_at_word_end_hi(text):
+    return re.sub("्$", "", text)
 
 class CMUDict():
     def __init__(self):
@@ -80,7 +83,9 @@ class CMUDict():
                     pronunciation_str += CMU_HINDI_MAP[symbol]
                 except KeyError:
                     pronunciation_str += symbol
-                pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
+            pronunciation_str = self._fix_vowel_signs_hi(pronunciation_str)
+            pronunciation_str = remove_halant_at_word_end_hi(pronunciation_str)
+
         return pronunciation_str + punctuations
 
     def _fix_vowel_signs_ml(self, text):
@@ -131,16 +136,16 @@ class CMUDict():
         return text
 
     def _fix_vowel_signs_hi(self, text):
-        text = text.replace("अ", "")
-        text = text.replace("आ", "ा")
-        text = text.replace("इ", "ि")
-        text = text.replace("ई", "ी")
-        text = text.replace("उ", "ु")
-        text = text.replace("ऊ", "ू")
-        text = text.replace("ऋ", "ृ")
-        text = text.replace("ए", "े")
-        text = text.replace("ऐ", "ै")
-        text = text.replace("ओ", "ो")
-        text = text.replace("औ", "ौ")
-        text = text.replace("ङ", "न्")
+        text = text.replace("्अ", "")
+        text = text.replace("्आ", "ा")
+        text = text.replace("्इ", "ि")
+        text = text.replace("्ई", "ी")
+        text = text.replace("्उ", "ु")
+        text = text.replace("्ऊ", "ू")
+        text = text.replace("्ऋ", "ृ")
+        text = text.replace("्ए", "े")
+        text = text.replace("्ऐ", "ै")
+        text = text.replace("्ओ", "ो")
+        text = text.replace("्औ", "ौ")
+        text = text.replace("ङ्", "न्")
         return text
