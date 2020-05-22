@@ -14,9 +14,8 @@ setup (
 from English to Indian Language and from one Indian Language
 to another Indian Language.""",
     include_package_data=True,
-    packages=find_packages(exclude='tests'),
-    setup_requires=['setuptools-git'],
-    install_requires=['setuptools'],
+    packages=['libindic.transliteration'],
+    namespace_packages=['libindic'],
     test_suite="tests",
     zip_safe=False,
     )
