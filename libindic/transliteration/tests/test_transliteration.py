@@ -34,9 +34,10 @@ class TransliterationTest(unittest.TestCase):
 
     def testKannadaToTamil(self):
         result = self.t.transliterate(self.kn, "ta_IN")
-        self.assertEqual(result,
-                         u"நமஸ்காரஇதுகந்நடபட்யட்ராந்ஸ்லிடரேஷந்பரீக்ஷெகாகி")
-
+        expected = u"நமஸ்கார இது கந்நட பட்ய ட்ராந்ஸ்லிடரேஷந் பரீக்ஷெகாகி "
+        self.assertEqual(result, expected)
+        
+        
     def testEnglishToHindi(self):
         result = self.t.transliterate(self.en, "hi_IN")
         self.assertEqual(result.strip(),

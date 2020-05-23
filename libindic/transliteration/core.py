@@ -237,12 +237,12 @@ class Transliterator:
         for character in word:
             index += 1
             if character in string.punctuation or (ord(character) <= 2304
-                                             and ord(character) >= 3071):
+                                             or ord(character) >= 3455):
                 tx_str = tx_str + character
                 continue
             offset = ord(character) + self.getOffset(src_lang, target_lang)
             if(offset > 0):
-                tx_str = tx_str + chr(offset)
+                tx_str = tx_str + unichr(offset)
             #schwa deletion
             baseoffset = offset - lang_bases[target_lang]
             #76 : virama
