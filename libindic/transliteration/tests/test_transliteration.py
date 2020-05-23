@@ -52,8 +52,8 @@ class TransliterationTest(unittest.TestCase):
     def testHindiToIPA(self):
         result = self.t.transliterate(self.hi, 'IPA')
         self.assertEqual(result.strip(),
-                         u"n̪əməskaːɾə silpaː kiː d̪un̪ijaː mɛːm"
-                         u" aːpəkaː sʋaːgət̪ə ɦɔ")
+                         u"n̪əməskaːɾ silpaː kiː d̪un̪ijaː mɛːm"
+                         u" aːpəkaː sʋaːgət̪ ɦɔ")
 
     def testMalayalamToEnglish(self):
         result = self.t.transliterate(self.ml, "en_US")
