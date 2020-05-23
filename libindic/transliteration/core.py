@@ -156,7 +156,7 @@ class Transliterator:
                 if word_length == index and word_length > 1:  # if last letter
                     tx_str = tx_str[:-1]  # remove the last 'a'
         try:
-            return tx_str .decode("utf-8")
+            return tx_str.decode("utf-8")
         except AttributeError:
             return tx_str
 
@@ -195,7 +195,7 @@ class Transliterator:
             # if last letter
             # remove the last 'a'
         try:
-            return tx_str .decode("utf-8")
+            return tx_str.decode("utf-8")
         except AttributeError:
             return tx_str
 

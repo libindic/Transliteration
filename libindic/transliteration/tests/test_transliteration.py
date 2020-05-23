@@ -18,7 +18,7 @@ class TransliterationTest(unittest.TestCase):
         self.kn = u"ನಮಸ್ಕಾರ ಇದು ಕನ್ನಡ ಪಠ್ಯ ಟ್ರಾನ್ಸ್ಲಿಟರೇಷನ್ ಪರೀಕ್ಷೆಗಾಗಿ"
         self.hi = u"नमस्कार सिल्पा की दुनिया में आपका स्वागत है"
         self.en = "This is a english text for transliteration"
-        self.ml = "ഇത് ഒരു മലയാളം വാക്യമാണ്"
+        self.ml = u"ഇത് ഒരു മലയാളം വാക്യമാണ്"
 
     def testKannadaToEnglish(self):
         result = self.t.transliterate(self.kn, "en_US")
@@ -29,7 +29,7 @@ class TransliterationTest(unittest.TestCase):
     def testEnglishToKannada(self):
         result = self.t.transliterate(self.en, "kn_IN")
         self.assertEqual(result.strip(),
-                         u"ದಿಸ್ ಇಸ್ ಅ ಇಂಗ್ಗ್ಲಿಷ್ ಟೆಕ್ಸ್ಟ್ ಫೋರ್"
+                         "ದಿಸ್ ಇಸ್ ಅ ಇಂಗ್ಗ್ಲಿಷ್ ಟೆಕ್ಸ್ಟ್ ಫೋರ್"
                          " transliteration")
 
     def testKannadaToTamil(self):
@@ -40,7 +40,7 @@ class TransliterationTest(unittest.TestCase):
     def testEnglishToHindi(self):
         result = self.t.transliterate(self.en, "hi_IN")
         self.assertEqual(result.strip(),
-                         u"दिस इज़ अ इन्ग्लिष टैक्स्ट फौर transliteration")
+                         "दिस इज़ अ इन्ग्लिष टैक्स्ट फौर transliteration")
 
     def testHindiToEnglish(self):
         result = self.t.transliterate(self.hi, "en_US")
@@ -62,7 +62,7 @@ class TransliterationTest(unittest.TestCase):
     def testEnglishToMalayalam(self):
         result = self.t.transliterate(self.en, "ml_IN")
         self.assertEqual(result.strip(),
-                         u"ദിസ് ഇസ് അ ഇങ്ഗ്ലിഷ് റ്റെക്സ്റ്റ് ഫോര്‍"
+                         "ദിസ് ഇസ് അ ഇങ്ഗ്ലിഷ് റ്റെക്സ്റ്റ് ഫോര്‍"
                          " transliteration")
 
 
