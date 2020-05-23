@@ -1,10 +1,8 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
-import sys
-sys.path.append('..')
-from libindic import transliteration
 import unittest
-from libindic.transliteration.cmudict import remove_halant_at_word_end_hi
+from .. import getInstance
+from ..cmudict import remove_halant_at_word_end_hi
 
 class unitsTest(unittest.TestCase):
     def testHalantRemovalWorks(self):
@@ -16,7 +14,7 @@ class unitsTest(unittest.TestCase):
 
 class TransliterationTest(unittest.TestCase):
     def setUp(self):
-        self.t = transliteration.getInstance()
+        self.t = getInstance()
         self.kn = u"ನಮಸ್ಕಾರ ಇದು ಕನ್ನಡ ಪಠ್ಯ ಟ್ರಾನ್ಸ್ಲಿಟರೇಷನ್ ಪರೀಕ್ಷೆಗಾಗಿ"
         self.hi = u"नमस्कार सिल्पा की दुनिया में आपका स्वागत है"
         self.en = "This is a english text for transliteration"

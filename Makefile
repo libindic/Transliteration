@@ -1,4 +1,4 @@
 test:
-	python -m unittest tests/transliterationtest.py
+	python -m unittest discover -s libindic
 
 travis: test

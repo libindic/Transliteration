@@ -1,2 +1,5 @@
 libindic-utils
 git+https://github.com/libindic/normalizer.git#egg=libindic_normalizer
+
+# from libindic-utils
+repoze.lru; python_version < '3'
