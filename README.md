@@ -1,3 +1,7 @@
+# Transliteration
+
+[![Build Status](https://travis-ci.org/libindic/Transliteration.svg?branch=master)](https://travis-ci.org/libindic/Transliteration)
+
 Transliteration module provides way to transliterate from
 English to any Indian Language or from any Indian Language
 other Indian Language. This module is a part of
