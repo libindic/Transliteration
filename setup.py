@@ -15,6 +15,7 @@ from English to Indian Language and from one Indian Language
 to another Indian Language.""",
     include_package_data=True,
     packages=['libindic.transliteration'],
+    setup_requires=['setuptools-git'],
     namespace_packages=['libindic'],
     test_suite="tests",
     zip_safe=False,
