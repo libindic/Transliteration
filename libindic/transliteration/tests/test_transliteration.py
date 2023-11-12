@@ -66,6 +66,10 @@ class TransliterationTest(unittest.TestCase):
                          "ദിസ് ഇസ് അ ഇങ്ഗ്ലിഷ് റ്റെക്സ്റ്റ് ഫോര്‍"
                          " transliteration")
 
+    def testMalayalamToISO(self):
+        result = self.t.transliterate(self.ml, "ISO15919")
+        self.assertEqual(result.strip(), "it oru malayāḷaṁ vākyamāṇ")
+
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TransliterationTest)

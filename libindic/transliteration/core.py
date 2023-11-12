@@ -148,7 +148,7 @@ class Transliterator:
             if offset >= 61 and offset <= 76:
                 tx_str = tx_str[:-1]  # remove the last 'a'
             if offset > 0 and offset <= 128:
-                tx_str = tx_str + charmap["ISO15919"][offset]
+                tx_str = tx_str + charmap_transphon["ISO15919"][offset]
             #delete the inherent 'a' at the end of the word from hindi
             if tx_str[-1:] == 'a' and (src_language == "hi_IN"
                                        or src_language == "gu_IN"
