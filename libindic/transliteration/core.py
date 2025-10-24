@@ -44,7 +44,7 @@ class Transliterator:
     """
     def __init__(self):
         self.cmu = CMUDict()
-        self.normalizer = Normalizer()
+        self.normalizer = Normalizer('ml')
 
     def transliterate_en_ml(self, word):
         """
@@ -227,7 +227,13 @@ class Transliterator:
         """
         index = 0
         tx_str = ""
-        word = self.normalizer.normalize(word)
+
+        # Normalizer is now language specific.
+        # But only English and Malayalam rules are available now.
+        # Since this function is indic_to_indic, doesn't require english either.
+        if src_lang == "ml_IN":
+            word = self.normalizer.normalize(word)
+
         if src_lang == "ml_IN" and target_lang != "ml_IN":
             word = word.replace(u"\u200C", u"")
             word = word.replace(u"\u200D", u"")
